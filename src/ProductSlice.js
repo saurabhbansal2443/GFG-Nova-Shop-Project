@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  hello: "Hello data ",
   screenProducts: [],
+  cartProducts: {},
 };
 
 export const ProductSlice = createSlice({
@@ -12,9 +12,26 @@ export const ProductSlice = createSlice({
     setScreenProducts: (state, action) => {
       state.screenProducts = action.payload;
     },
+    setCartProducts: (state, action) => {
+      if (state.cartProducts[action.payload]) {
+        state.cartProducts = {
+          ...state.cartProducts,
+          [action.payload]: {
+            quantity: state.cartProducts[action.payload].quantity + 1,
+          },
+        };
+      } else {
+        state.cartProducts = {
+          ...state.cartProducts,
+          [action.payload]: {
+            quantity: 1,
+          },
+        };
+      }
+    },
   },
 });
 
-export const { setScreenProducts } = ProductSlice.actions;
+export const { setScreenProducts, setCartProducts } = ProductSlice.actions;
 
 export default ProductSlice.reducer;

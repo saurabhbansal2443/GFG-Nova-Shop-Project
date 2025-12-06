@@ -5,6 +5,6 @@
 5. Create search Bar functionality
 6. Create search suggestions 
 7. Implement debounce in search to optimize the search 
-8. 
+8. Setup the redux store to store the products data 
 9. 
 10. 
