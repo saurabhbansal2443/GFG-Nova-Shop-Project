@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
+  let timerId = useRef(null);
+
   async function getApiData() {
     if (searchQuery.trim().length == 0) {
       return;
     }
-
     console.log("Api called", searchQuery);
-
     const apiData = await fetch(
       `https://dummyjson.com/products/search?q=${searchQuery}`
     );
@@ -19,7 +19,12 @@ const SearchBar = () => {
   }
 
   useEffect(() => {
-    getApiData();
+    if (timerId.current) {
+      clearTimeout(timerId.current);
+    }
+    timerId.current = setTimeout(() => {
+      getApiData();
+    }, 500);
   }, [searchQuery]);
 
   return (

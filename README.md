@@ -3,7 +3,8 @@
 3. Create Home. Screen
 4. Create Navabar and design it
 5. Create search Bar functionality
-
-6. Create NavBar
-7. React Router Dom
-8. Redux for stateManagment
+6. Create search suggestions 
+7. Implement debounce in search to optimize the search 
+8. 
+9. 
+10. 
